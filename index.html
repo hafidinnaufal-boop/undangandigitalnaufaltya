@@ -10,8 +10,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Tone.js untuk simulasi musik latar lembut -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <!-- Elemen Audio Musik Latar -->
+<audio id="bgMusic" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung elemen audio.
+</audio>
 
     <script>
         tailwind.config = {
@@ -406,6 +409,59 @@
             </div>
         </section>
 
+        <!-- ==================== 6. UCAPAN SELAMAT & DOA RESTU ==================== -->
+        <section id="ucapan" class="px-6 py-16 bg-white border-t border-skyPastel-100 text-center reveal">
+            <p class="text-xs uppercase tracking-[0.25em] text-skyPastel-500 font-semibold mb-1">Buku Tamu</p>
+            <h3 class="font-serif text-3xl font-semibold text-skyPastel-900 mb-3">Ucapan &amp; Doa Restu</h3>
+            <p class="text-xs sm:text-sm text-skyPastel-700 max-w-md mx-auto mb-8 leading-relaxed">
+                Tuliskan ucapan selamat, harapan, serta doa restu terbaik Anda untuk kedua mempelai.
+            </p>
+
+            <div class="max-w-xl mx-auto text-left">
+                <!-- Form Input Ucapan -->
+                <form id="wishForm" class="bg-skyPastel-50/80 border border-skyPastel-200 rounded-3xl p-6 shadow-sm mb-8 space-y-4">
+                    <div>
+                        <label for="wishName" class="block text-xs font-semibold text-skyPastel-800 mb-1.5">Nama Lengkap</label>
+                        <input type="text" id="wishName" required placeholder="Masukkan nama Anda" 
+                               class="w-full px-4 py-2.5 rounded-xl border border-skyPastel-200 bg-white text-sm text-skyPastel-900 focus:outline-none focus:border-skyPastel-500 transition-colors">
+                    </div>
+
+                    <div>
+                        <label for="wishAttendance" class="block text-xs font-semibold text-skyPastel-800 mb-1.5">Konfirmasi Kehadiran</label>
+                        <select id="wishAttendance" 
+                                class="w-full px-4 py-2.5 rounded-xl border border-skyPastel-200 bg-white text-sm text-skyPastel-900 focus:outline-none focus:border-skyPastel-500 transition-colors">
+                            <option value="Hadir">InsyaAllah Hadir</option>
+                            <option value="Masih Ragu">Masih Ragu</option>
+                            <option value="Berhalangan">Maaf, Berhalangan Hadir</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="wishMessage" class="block text-xs font-semibold text-skyPastel-800 mb-1.5">Ucapan &amp; Doa</label>
+                        <textarea id="wishMessage" rows="3" required placeholder="Tuliskan ucapan selamat &amp; doa restu untuk Naufal &amp; Tya..." 
+                                  class="w-full px-4 py-2.5 rounded-xl border border-skyPastel-200 bg-white text-sm text-skyPastel-900 focus:outline-none focus:border-skyPastel-500 transition-colors"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-3 px-6 rounded-full bg-gradient-to-r from-skyPastel-600 to-skyPastel-800 hover:from-skyPastel-700 hover:to-skyPastel-900 text-white text-xs sm:text-sm font-semibold tracking-wide shadow-md transition-all cursor-pointer flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                        </svg>
+                        <span>Kirim Ucapan</span>
+                    </button>
+                </form>
+
+                <!-- Daftar Ucapan Masuk -->
+                <div class="flex items-center justify-between mb-3 px-1">
+                    <h4 class="font-serif font-semibold text-base text-skyPastel-900">Doa &amp; Ucapan Masuk</h4>
+                    <span id="wishCountBadge" class="text-[11px] font-semibold bg-skyPastel-100 text-skyPastel-800 px-3 py-1 rounded-full">0 Ucapan</span>
+                </div>
+
+                <div id="wishListContainer" class="space-y-3 max-h-96 overflow-y-auto pr-1">
+                    <!-- Item ucapan akan dirender lewat JavaScript -->
+                </div>
+            </div>
+        </section>
+
         <!-- ==================== FOOTER PENUTUP ==================== -->
         <footer class="px-6 py-12 text-center bg-white border-t border-skyPastel-100">
             <p class="font-serif text-sm text-skyPastel-700 max-w-md mx-auto mb-3 leading-relaxed">
@@ -419,7 +475,7 @@
         </footer>
     </main>
 
-    <!-- ==================== 6. NAVIGASI BAWAH (BOTTOM NAVIGATION BAR) ==================== -->
+    <!-- ==================== 7. NAVIGASI BAWAH (BOTTOM NAVIGATION BAR) ==================== -->
     <nav class="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-sm bg-white/90 backdrop-blur-md border border-skyPastel-200 shadow-xl shadow-skyPastel-900/10 rounded-full px-3 py-2 flex items-center justify-around">
         <a href="#home" class="flex flex-col items-center justify-center py-1 px-4 rounded-full text-skyPastel-700 hover:bg-skyPastel-100 hover:text-skyPastel-900 transition-colors">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -438,6 +494,12 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
             </svg>
             <span class="text-[10px] font-medium mt-0.5">Tanda Kasih</span>
+        </a>
+        <a href="#ucapan" class="flex flex-col items-center justify-center py-1 px-4 rounded-full text-skyPastel-700 hover:bg-skyPastel-100 hover:text-skyPastel-900 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+            </svg>
+            <span class="text-[10px] font-medium mt-0.5">Ucapan</span>
         </a>
     </nav>
 
@@ -476,47 +538,25 @@ Rekan Kerja Divisi Operasional</textarea>
             document.getElementById('guestNameDisplay').textContent = guestParam;
         }
 
-        // 2. Simulasi Musik Latar Lembut menggunakan Tone.js (Melodi Piano Romantis)
+        // 2. Musik Latar Menggunakan File Audio MP3
         let isPlaying = false;
-        let synth = null;
-        let loop = null;
+        const bgMusic = document.getElementById('bgMusic');
+        bgMusic.volume = 0.6; // Mengatur volume (0.0 sampai 1.0)
 
-        async function toggleMusic(forcePlay = false) {
+        function toggleMusic(forcePlay = false) {
             const iconOn = document.getElementById('musicIconOn');
             const iconOff = document.getElementById('musicIconOff');
 
             if (!isPlaying || forcePlay) {
-                try {
-                    await Tone.start();
-                    if (!synth) {
-                        synth = new Tone.PolySynth(Tone.Synth, {
-                            oscillator: { type: "sine" },
-                            envelope: { attack: 0.4, decay: 0.5, sustain: 0.4, release: 2 }
-                        }).toDestination();
-                        synth.volume.value = -14;
-
-                        // Rangkaian akor lembut (C Major - G Major - A Minor - F Major)
-                        const chords = [
-                            ["C4", "E4", "G4", "B4"],
-                            ["G3", "B3", "D4", "G4"],
-                            ["A3", "C4", "E4", "G4"],
-                            ["F3", "A3", "C4", "E4"]
-                        ];
-                        let step = 0;
-                        loop = new Tone.Loop(time => {
-                            synth.triggerAttackRelease(chords[step % chords.length], "2n", time);
-                            step++;
-                        }, "2n").start(0);
-                    }
-                    Tone.Transport.start();
+                bgMusic.play().then(() => {
                     isPlaying = true;
                     iconOn.classList.remove('hidden');
                     iconOff.classList.add('hidden');
-                } catch (e) {
-                    console.log("Audio menunggu interaksi pengguna.");
-                }
+                }).catch((e) => {
+                    console.log("Autoplay dicegah browser, menunggu klik pengguna:", e);
+                });
             } else {
-                Tone.Transport.pause();
+                bgMusic.pause();
                 isPlaying = false;
                 iconOn.classList.add('hidden');
                 iconOff.classList.remove('hidden');
@@ -524,7 +564,6 @@ Rekan Kerja Divisi Operasional</textarea>
         }
 
         document.getElementById('musicToggleBtn').addEventListener('click', () => toggleMusic());
-
         // 3. Tombol Buka Undangan
         document.getElementById('openInvitationBtn').addEventListener('click', () => {
             const overlay = document.getElementById('coverOverlay');
@@ -689,6 +728,92 @@ Rekan Kerja Divisi Operasional</textarea>
 
         generateLinksBtn.addEventListener('click', renderGeneratedLinks);
         renderGeneratedLinks();
+        // 8. Logika Buku Tamu / Ucapan Selamat (LocalStorage)
+        const WISH_STORAGE_KEY = 'wedding_wishes_naufal_tya_2026';
+
+        // Otomatis isi kolom nama jika tamu membuka tautan personal (?to=...)
+        if (guestParam) {
+            document.getElementById('wishName').value = guestParam;
+        }
+
+        // Ucapan awal bawaan
+        const defaultWishes = [];
+
+        function getWishes() {
+            const saved = localStorage.getItem(WISH_STORAGE_KEY);
+            return saved ? JSON.parse(saved) : defaultWishes;
+        }
+
+        function escapeHTML(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function renderWishes() {
+            const wishes = getWishes();
+            const container = document.getElementById('wishListContainer');
+            const badge = document.getElementById('wishCountBadge');
+
+            badge.textContent = `${wishes.length} Ucapan`;
+            container.innerHTML = '';
+
+            wishes.forEach(item => {
+                let statusBadgeClass = 'bg-emerald-100 text-emerald-800 border-emerald-200';
+                if (item.attendance === 'Masih Ragu') {
+                    statusBadgeClass = 'bg-amber-100 text-amber-800 border-amber-200';
+                } else if (item.attendance === 'Berhalangan') {
+                    statusBadgeClass = 'bg-rose-100 text-rose-800 border-rose-200';
+                }
+
+                const card = document.createElement('div');
+                card.className = 'bg-skyPastel-50/60 border border-skyPastel-200/80 rounded-2xl p-4 shadow-sm';
+                card.innerHTML = `
+                    <div class="flex items-start justify-between gap-2 mb-1.5">
+                        <div>
+                            <p class="font-semibold text-xs sm:text-sm text-skyPastel-900">${escapeHTML(item.name)}</p>
+                            <p class="text-[10px] text-skyPastel-500">${escapeHTML(item.time)}</p>
+                        </div>
+                        <span class="text-[10px] font-semibold px-2.5 py-0.5 rounded-full border ${statusBadgeClass}">
+                            ${escapeHTML(item.attendance)}
+                        </span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-skyPastel-800 leading-relaxed mt-2">${escapeHTML(item.message)}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        document.getElementById('wishForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nameInput = document.getElementById('wishName');
+            const attendanceInput = document.getElementById('wishAttendance');
+            const messageInput = document.getElementById('wishMessage');
+
+            const now = new Date();
+            const formattedTime = now.toLocaleDateString('id-ID', {
+                day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+            });
+
+            const newWish = {
+                name: nameInput.value.trim(),
+                attendance: attendanceInput.value,
+                message: messageInput.value.trim(),
+                time: formattedTime
+            };
+
+            const currentWishes = getWishes();
+            currentWishes.unshift(newWish);
+            localStorage.setItem(WISH_STORAGE_KEY, JSON.stringify(currentWishes));
+
+            messageInput.value = '';
+            renderWishes();
+            showToast('Terima kasih! Ucapan Anda berhasil dikirim.');
+        });
+
+        // Render daftar ucapan saat halaman pertama kali dimuat
+        renderWishes();
     </script>
 </body>
 </html>
